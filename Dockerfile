@@ -1,12 +1,15 @@
-# Stage 0: build
-FROM maven:3.9-eclipse-temurin-21 AS build
-WORKDIR /app
-COPY . .
-RUN mvn -DskipTests=true clean package
+FROM eclipse-temurin:21-jdk
 
-# Stage 1: runtime
-FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+
+COPY . .
+
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# CMD ["java","-jar","target/CounterX-0.0.1-SNAPSHOT.jar"]
+
+# CMD ["java","-jar","target/CounterX-Backend-0.0.1-SNAPSHOT.jar"]
+CMD sh -c "java -jar target/*.jar"
