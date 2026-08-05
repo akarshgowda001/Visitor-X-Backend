@@ -20,6 +20,7 @@ public class CorsConfig {
                 "http://localhost:4200",   // Angular default
                 "http://localhost:5173",   // Vite default
                 "http://localhost:8080",
+                "https://visitor-x-frontend-kgyc.vercel.app",
                 "https://visitorx-new.web.app/",   // Same origin
                 "https://visitorx-app-production.up.railway.app" // production
         ));
